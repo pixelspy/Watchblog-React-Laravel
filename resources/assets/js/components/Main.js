@@ -29,40 +29,52 @@ class Main extends Component {
           });
     }
 
-    handleClick(post) {
-        this.setState({currentPost: post});
-    }
-
-    handleAddPost(post) {
-        fetch('api/posts/', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-
-            body: JSON.stringify(post)
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then( data => {
-            this.setState((prevState) => ({
-                posts: prevState.posts.concat(data),
-                currentPost: data
-            }))
-        })
-    }
-
     renderPosts() {
+        const listStyle = {
+            listStyle: 'none',
+            fontSize: '18px',
+            lineHeight: '1.8em',
+        }
         return this.state.posts.map(post => {
             return(
-                <li key={post.id} onClick={() => this.handleClick(post)}>
+                <li style={listStyle} key={post.id} onClick={() => this.handleClick(post)}>
                     {post.title}
                 </li>
             );
         })
     }
+
+    handleClick(post) {
+        this.setState({currentPost: post});
+    }
+
+    handleAddPost(post) {
+
+     /*Fetch API for post request */
+     fetch( 'api/posts/', {
+         method:'post',
+         /* headers are important*/
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+
+         body: JSON.stringify(post)
+     })
+     .then(response => {
+         return response.json();
+     })
+     .then( data => {
+
+         this.setState((prevState)=> ({
+             posts: prevState.posts.concat(data),
+             currentProduct : data
+         }))
+     })
+  //update the state of products and currentProduct
+   }
+
+
 
     render() {
         const mainDivStyle =  {

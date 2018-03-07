@@ -21,7 +21,7 @@ class PostsController extends Controller
   {
 
       $this->validate($request, [
-          'title' => 'required|unique:products|max:255',
+          'title' => 'required|unique:posts|max:255',
           'body' => 'required',
       ]);
       $post = Post::create($request->all());

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 class AddPost extends Component {
   constructor(props) {
@@ -7,15 +6,14 @@ class AddPost extends Component {
 
     this.state = {
       newPost: {
-        title:'',
-        body:''
+        title: '',
+        body: ''
       }
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
-
 
 
   handleInput(key, el) {
@@ -42,14 +40,17 @@ class AddPost extends Component {
     }
     return(
       <div>
-        <h2>Add new Post</h2>
         <div style={divStyle}>
+          <h2>Add new Post</h2>
+
           <form onSubmit={this.handleSubmit}>
-            <label>Title:
+            <label>
+              Title:
               <input style={inputStyle} type="text" onChange={(el) => this.handleInput('title', el)} />
             </label>
 
-            <label> Body :
+            <label>
+              Body :
               <input style={inputStyle} type="text" onChange={(el) => this.handleInput('body', el)}/>
             </label>
 
